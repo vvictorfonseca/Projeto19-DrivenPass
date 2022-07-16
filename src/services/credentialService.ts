@@ -1,12 +1,12 @@
 import { credentials } from "@prisma/client";
 import credentialRepository from "../repositories/credentialRepository.js";
-import { encryptCredentialPassword, decryptCredentialPassword } from "../utils/encryptNumbers.js";
+import { encryptPassword, decryptPassword } from "../utils/encryptNumbers.js";
 
 export type CreateCredentialsData = Omit<credentials, "id">
 
 async function createCredential(credential: CreateCredentialsData) {
     
-    const passwordEncrypted = encryptCredentialPassword(credential.password);
+    const passwordEncrypted = encryptPassword(credential.password);
     credential.password = passwordEncrypted;
 
     return await credentialRepository.createCredential(credential);
@@ -21,7 +21,7 @@ async function allCredentials(id: number) {
     }
 
     credentials.forEach(
-        (info) => info.password = decryptCredentialPassword(info.password)
+        (info) => info.password = decryptPassword(info.password)
     )
     
     return credentials;
@@ -36,7 +36,7 @@ async function findCredentialById(infoId: number, userId: number) {
     }
     
     credential.forEach(
-        (info) => info.password = decryptCredentialPassword(info.password)
+        (info) => info.password = decryptPassword(info.password)
     )
 
     return credential;
