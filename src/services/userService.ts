@@ -1,11 +1,11 @@
-import { Users } from "@prisma/client";
+import { users } from "@prisma/client";
 import userRepository from "../repositories/userRepository.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 
 const { JWT_SECRET_KEY } = process.env
 
-export type CreateUserData = Omit<Users, "id">
+export type CreateUserData = Omit<users, "id">
 
 async function createNewUser(newUser: CreateUserData) {
     const SALT = 10

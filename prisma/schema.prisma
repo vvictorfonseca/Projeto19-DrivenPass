@@ -10,32 +10,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
+model users {
   id Int @id @default(autoincrement())
   email String @unique
   password String
-  credentials Credentials[]
-  notes Notes[]
+  credentials credentials[]
+  notes notes[]
   cards cards[]
-  wifi Wifi[]
+  wifi wifi[]
 }
 
-model Credentials {
+model credentials {
   id Int @id @default(autoincrement())
   userId Int
   tittle String
   url String
   userName String
   password String
-  users Users @relation(fields: [userId], references: [id])
+  users users @relation(fields: [userId], references: [id])
 }
 
-model Notes {
+model notes {
   id Int @id @default(autoincrement())
   userId Int
   tittle String
   note String
-  users Users @relation(fields: [userId], references: [id])
+  users users @relation(fields: [userId], references: [id])
 }
 
 model cards {
@@ -48,7 +48,7 @@ model cards {
   password String
   isVirtual Boolean @default(false)
   type cardType
-  users Users @relation(fields: [userId], references: [id])
+  users users @relation(fields: [userId], references: [id])
 }
 
 enum cardType {
@@ -57,11 +57,11 @@ enum cardType {
   credit_debit
 }
 
-model Wifi {
+model wifi {
   id Int @id @default(autoincrement())
   userId Int
   tittle String
   wifiNetwork String
   password String
-  users Users @relation(fields: [userId], references: [id])
+  users users @relation(fields: [userId], references: [id])
 }
