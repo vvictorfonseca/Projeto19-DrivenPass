@@ -8,6 +8,7 @@ import userRouter from "./routes/userRouter.js";
 import credentialRouter from "./routes/credentialRouter.js";
 import noteRouter from "./routes/noteRouter.js";
 import cardRouter from "./routes/cardRouter.js";
+import internetRouter from "./routes/internetRepository.js";
 import handleErrors from "./middlewares/handleErrorMiddleware.js";
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(userRouter);
 app.use(credentialRouter);
 app.use(noteRouter);
 app.use(cardRouter);
+app.use(internetRouter);
 app.use(handleErrors);
 
 const port: number = +process.env.PORT || 4000
