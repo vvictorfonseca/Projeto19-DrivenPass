@@ -14,6 +14,8 @@ model users {
   id Int @id @default(autoincrement())
   email String @unique
   password String
+  createdAt DateTime? @default(now()) @db.Timestamptz()
+  
   credentials credentials[]
   notes notes[]
   cards cards[]
@@ -28,6 +30,9 @@ model credentials {
   userName String
   password String
   users users @relation(fields: [userId], references: [id])
+  createdAt DateTime? @default(now()) @db.Timestamptz()
+
+  @@unique([userId, tittle])
 }
 
 model notes {
@@ -36,11 +41,15 @@ model notes {
   tittle String
   note String
   users users @relation(fields: [userId], references: [id])
+  createdAt DateTime? @default(now()) @db.Timestamptz()
+
+  @@unique([userId, tittle])
 }
 
 model cards {
   id Int @id @default(autoincrement())
   userId Int
+  tittle String
   cardNumber String
   name String
   securityCode String
@@ -49,6 +58,9 @@ model cards {
   isVirtual Boolean @default(false)
   type cardType
   users users @relation(fields: [userId], references: [id])
+  createdAt DateTime? @default(now()) @db.Timestamptz()
+
+  @@unique([userId, tittle])
 }
 
 enum cardType {
@@ -64,4 +76,7 @@ model wifi {
   wifiNetwork String
   password String
   users users @relation(fields: [userId], references: [id])
+  createdAt DateTime? @default(now()) @db.Timestamptz()
+
+  @@unique([userId, tittle])
 }

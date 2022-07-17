@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken"
 
 const { JWT_SECRET_KEY } = process.env
 
-export type CreateUserData = Omit<users, "id">
+export type CreateUserData = Omit<users, "id" | "createdAt">
 
 async function createNewUser(newUser: CreateUserData) {
     const SALT = 10

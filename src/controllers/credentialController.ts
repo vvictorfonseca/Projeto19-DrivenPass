@@ -4,7 +4,6 @@ import credentialService, { CreateCredentialsData } from "../services/credential
 async function createCredential(req: Request, res: Response){
     const info = req.body
     const userId =  res.locals.user.id
-    console.log("userIdInfo", userId)
     const credential: CreateCredentialsData = {...info, userId}
 
     await credentialService.createCredential(credential)

@@ -1,8 +1,7 @@
 import { notes } from "@prisma/client";
 import noteRepository from "../repositories/noteRepository.js";
-import { encryptPassword, decryptPassword } from "../utils/encryptNumbers.js";
 
-export type CreateNoteData = Omit<notes, "id">
+export type CreateNoteData = Omit<notes, "id" | "createdAt">
 
 async function createNote(note: CreateNoteData) {
     
