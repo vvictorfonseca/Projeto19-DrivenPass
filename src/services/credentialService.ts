@@ -8,8 +8,6 @@ async function createCredential(credential: CreateCredentialsData) {
 
     const info = await credentialRepository.findCredentialByTittle(credential)
 
-    console.log("info", info)
-
     if (info) {
         throw { type: "conflict", message: "already have a credential tittle with this name" }
     }
@@ -24,7 +22,7 @@ async function allCredentials(id: number) {
     
     const credentials = await credentialRepository.allCredentialsById(id);
 
-    if (!credentials) {
+    if (credentials.length == 0) {
         throw { type: "not_found", message: "no credentials registered" }
     }
 
@@ -39,7 +37,7 @@ async function findCredentialById(infoId: number, userId: number) {
 
     const credential = await credentialRepository.findCredentialById(infoId, userId);
 
-    if (!credential) {
+    if (credential.length == 0) {
         throw { type: "not_found", message: "invalid credential" }
     }
     
@@ -54,7 +52,7 @@ async function deleteCredentialById(infoId: number, userId: number) {
     
     const credential = await credentialRepository.deleteCredentialById(infoId, userId)
 
-    if (!credential) {
+    if (credential) {
         throw { type: "not_found", message: "invalid credential" }
     }
 

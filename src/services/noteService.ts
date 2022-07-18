@@ -20,7 +20,7 @@ async function createNote(note: CreateNoteData) {
 async  function allNotes(userId: number) {
     const notes = await noteRepository.allNotes(userId)
 
-    if (!notes) {
+    if (notes.length == 0) {
         throw { type: "not_found", message: "no notes registered" }
     }
 
@@ -30,7 +30,7 @@ async  function allNotes(userId: number) {
 async function findNoteById(infoId: number, userId: number) {
     const note = await noteRepository.findNoteByid(infoId, userId)
 
-    if (!note) {
+    if (note.length == 0) {
         throw { type: "not_found", message: "invalid note" }
     }
 

@@ -24,7 +24,7 @@ async function createCard(card: CreateCardData) {
 async function allCards(userId: number) {
     const cards = await cardRepository.allCards(userId)
 
-    if (!cards) {
+    if (cards.length == 0) {
         throw { type: "not_found", message: "no cards registered" }
     }
 
@@ -42,7 +42,7 @@ async function allCards(userId: number) {
 async function findCardByIds(infoId: number, userId: number) {
     const card = await cardRepository.findCardByIds(infoId, userId);
 
-    if (!card) {
+    if (card.length == 0) {
         throw { type: "not_found", message: "invalid card" }
     }
 

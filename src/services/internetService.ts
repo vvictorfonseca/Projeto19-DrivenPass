@@ -15,7 +15,7 @@ async function createWifiInfo(wifiInfo: CreateWifiCard) {
 async function allWifiInfos(userId: number) {
     const wifiInfos = await internetRepository.allWifiInfos(userId)
 
-    if (!wifiInfos) {
+    if (wifiInfos.length == 0) {
         throw { type: "not_found", message: "no wifi infos registered" }
     }
 
@@ -29,7 +29,7 @@ async function allWifiInfos(userId: number) {
 async function findWifiInfoByIds(infoId: number, userId: number) {
     const wifiInfo = await internetRepository.findWifiInfoByIds(infoId, userId);
 
-    if (!wifiInfo) {
+    if (wifiInfo.length == 0) {
         throw { type: "not_found", message: "invalid wifi" }
     }
 
