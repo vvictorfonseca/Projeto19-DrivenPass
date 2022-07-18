@@ -20,11 +20,17 @@ async function deleteNoteById(id: number, userId: number) {
     return note
 }
 
+async function findNoteByTittle(note: CreateNoteData) {
+    const info = await prisma.notes.findFirst({where: {tittle: note.tittle, userId: note.userId}})
+    return info
+}
+
 const noteRepository = {
     createNote,
     allNotes,
     findNoteByid,
-    deleteNoteById
+    deleteNoteById,
+    findNoteByTittle
 }
 
 export default noteRepository

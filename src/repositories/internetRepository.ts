@@ -24,7 +24,7 @@ const internetRepository = {
     createWifiInfo,
     allWifiInfos,
     findWifiInfoByIds,
-    deleterWifiByIds
+    deleterWifiByIds,
 }
 
 export default internetRepository;

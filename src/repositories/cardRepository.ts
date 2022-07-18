@@ -18,13 +18,19 @@ async function findCardByIds(id: number, userId: number) {
 async function deleteCardByIds(id: number, userId: number) {
     const card = await prisma.cards.deleteMany({where: {id, userId}})
     return card
-}   
+}
+
+async function findCardByTittle(card: CreateCardData) {
+    const info = await prisma.cards.findFirst({where: {tittle: card.tittle, userId: card.userId}})
+    return info
+}
 
 const cardRepository = {
     createCard,
     allCards,
     findCardByIds,
-    deleteCardByIds
+    deleteCardByIds,
+    findCardByTittle
 }
 
 export default cardRepository

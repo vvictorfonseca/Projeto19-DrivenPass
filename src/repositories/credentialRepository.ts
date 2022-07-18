@@ -20,11 +20,17 @@ async function deleteCredentialById(id: number, userId: number) {
     return credential
 }
 
+async function findCredentialByTittle(credential: CreateCredentialsData) {
+    const info = await prisma.credentials.findFirst({where: {tittle: credential.tittle, userId: credential.userId}})
+    return info
+}
+
 const credentialRepository = {
     createCredential,
     allCredentialsById,
     findCredentialById,
-    deleteCredentialById
+    deleteCredentialById,
+    findCredentialByTittle
 }
 
 export default credentialRepository;

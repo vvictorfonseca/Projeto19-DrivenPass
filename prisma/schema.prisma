@@ -77,6 +77,4 @@ model wifi {
   password String
   users users @relation(fields: [userId], references: [id])
   createdAt DateTime? @default(now()) @db.Timestamptz()
-
-  @@unique([userId, tittle])
 }

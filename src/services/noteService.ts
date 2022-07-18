@@ -4,6 +4,15 @@ import noteRepository from "../repositories/noteRepository.js";
 export type CreateNoteData = Omit<notes, "id" | "createdAt">
 
 async function createNote(note: CreateNoteData) {
+
+    const info = await noteRepository.findNoteByTittle(note)
+
+    console.log("note", info)
+
+    if (info) {
+        ("entrou")
+        throw { type: "conflict", message: "already have a credential tittle with this name" }
+    }
     
     return await noteRepository.createNote(note)
 }

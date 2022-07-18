@@ -5,6 +5,14 @@ import { encryptPassword, decryptPassword } from "../utils/encryptNumbers.js";
 export type CreateCredentialsData = Omit<credentials, "id" | "createdAt">
 
 async function createCredential(credential: CreateCredentialsData) {
+
+    const info = await credentialRepository.findCredentialByTittle(credential)
+
+    console.log("info", info)
+
+    if (info) {
+        throw { type: "conflict", message: "already have a credential tittle with this name" }
+    }
     
     const passwordEncrypted = encryptPassword(credential.password);
     credential.password = passwordEncrypted;

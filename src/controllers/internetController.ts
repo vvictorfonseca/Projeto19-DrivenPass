@@ -29,14 +29,9 @@ async function deleteWifiInfo(req: Request, res: Response) {
     const userId: number = res.locals.user.id
     const infoId = parseInt(req.params.infoId)
 
-    const wifiInfo = await internetService.deleterWifiByIds(infoId, userId);
+    await internetService.deleterWifiByIds(infoId, userId);
 
-    if (wifiInfo) {
-        return res.sendStatus(200)
-    
-    } else {
-        return res.send("wifi info not found").status(404)
-    } 
+    return res.sendStatus(200)
 }
 
 export { createWifiInfo, getWifiInfos, getWifiInfo, deleteWifiInfo }

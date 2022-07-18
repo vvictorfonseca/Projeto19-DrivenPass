@@ -1,26 +1,28 @@
 import { Request, Response, NextFunction } from "express";
 
-function handleErrors(error, req: Request, res: Response, next: NextFunction ) {
+function handleErrors(error: any, req: Request, res: Response, next: NextFunction ) {
 
     if (error.type === "not_found") {
-        res.sendStatus(404)
+        return res.status(404).send(error.message)
     }
 
     if (error.type === "unprocessable_entity") {
-        res.sendStatus(422)
+        return res.status(422).send(error.message)
     }
 
     if (error.type === "not_allowed") {
-        res.sendStatus(401)
+        return res.status(401).send(error.message)
     }
 
     if (error.type === "conflict") {
-        res.sendStatus(409)
+        return res.status(409).send(error.message)
     }
 
     if (error.type === "bad_request") {
-        res.sendStatus(400)
+        return res.send(400).send(error.message)
     }
+
+    return res.status(500).send("Internal server error!")
 }
 
 export default handleErrors;

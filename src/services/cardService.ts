@@ -6,6 +6,12 @@ export type CreateCardData = Omit<cards, "id" | "createdAt">
 
 async function createCard(card: CreateCardData) {
 
+    const info = await cardRepository.findCardByTittle(card)
+
+    if (info) {
+        throw { type: "conflict", message: "already have a credential tittle with this name" }
+    }
+
     const securityCodeEncrypted = encryptPassword(card.securityCode)
     card.securityCode = securityCodeEncrypted
 
