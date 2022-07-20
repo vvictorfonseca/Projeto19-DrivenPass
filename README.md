@@ -15,7 +15,7 @@ Navegar na internet pode ser uma atividade muito divertida, mas ao mesmo tempo, 
 
 ***
 
-## :computer:	 Tecnologias e Conceitos
+## :computer:	 Tecnologias e Ferramentas usadas
 
 - Node.js
 - Express.js
