@@ -87,11 +87,9 @@ POST /create/note (autenticada)
     - Rota para criar uma nova anotação 
     - headers: { "Authorization": "Bearer $token" }
     - body: {
-    {
     "tittle": "Internet de casa",
     "note": "123456"
 }
-    }
 ```
 
 ```yml
@@ -120,7 +118,6 @@ POST /create/card (autenticada)
     - Rota para registrar um novo cartão 
     - headers: { "Authorization": "Bearer $token" }
     - body: {
-    {
     "tittle": "NUBANK",
     "cardNumber": "1234123412341234",
     "name": "VICTOR H F SILVA",
@@ -130,7 +127,6 @@ POST /create/card (autenticada)
     "isVirtual": true,
     "type": "credit_debit"
 }
-    }
 ```
 
 ```yml
@@ -159,12 +155,10 @@ POST /create/wifiInfo (autenticada)
     - Rota para registrar dados de acesso a uma rede de internet do usuário.
     - headers: { "Authorization": "Bearer $token" }
     - body: {
-    {
     "tittle": "Internet da vó",
     "wifiNetwork": "vó375",
     "password": "123456"
 }
-    }
 ```
 
 ```yml
